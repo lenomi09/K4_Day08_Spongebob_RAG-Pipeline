@@ -1,0 +1,117 @@
+# Cách tính ngày phép năm theo quy định mới nhất
+
+**Source:** https://luatvietnam.vn/lao-dong-tien-luong/cach-tinh-ngay-phep-562-19640-article.html
+**Crawled:** 2026-08-04T15:11:44.725628
+
+---
+
+[Tin pháp luật](https://luatvietnam.vn/tin-phap-luat.html) [Lao động - Tiền lương](https://luatvietnam.vn/tin-phap-luat/lao-dong-tien-luong-c562-article.html)
+  * [Hành chính](https://luatvietnam.vn/tin-phap-luat/quy-dinh-moi-nhat-ve-hanh-chinh-c570-article.html "Hành chính")
+    * [Công chứng - Chứng thực](https://luatvietnam.vn/tin-phap-luat/cong-chung-chung-thuc-c613-article.html "Công chứng - Chứng thực")
+  * [Thuế - Phí](https://luatvietnam.vn/tin-phap-luat/thue-phi-le-phi-c565-article.html "Thuế - Phí")
+  * [Đất đai - Nhà ở](https://luatvietnam.vn/tin-phap-luat/dat-dai-nha-o-c567-article.html "Đất đai - Nhà ở")
+  * [Bảo hiểm](https://luatvietnam.vn/tin-phap-luat/quy-dinh-ve-bao-hiem-c563-article.html "Bảo hiểm")
+  * [Cán bộ - Công chức](https://luatvietnam.vn/tin-phap-luat/quy-dinh-moi-nhat-ve-can-bo-cong-chuc-c566-article.html "Cán bộ - Công chức")
+    * [Phòng, chống tham nhũng](https://luatvietnam.vn/tin-phap-luat/phong-chong-tham-nhung-c597-article.html "Phòng, chống tham nhũng")
+  * [Lao động](https://luatvietnam.vn/tin-phap-luat/lao-dong-tien-luong-c562-article.html "Lao động")
+  * [Dân sự](https://luatvietnam.vn/tin-phap-luat/quy-dinh-moi-nhat-ve-dan-su-c568-article.html "Dân sự")
+  * [Biểu mẫu](https://luatvietnam.vn/tin-phap-luat/bieu-mau-c571-article.html "Biểu mẫu")
+  * [Giao thông](https://luatvietnam.vn/tin-phap-luat/giao-thong-c863-article.html "Giao thông")
+  * [Lĩnh vực khác](https://luatvietnam.vn/tin-phap-luat/linh-vuc-khac-c883-article.html "Lĩnh vực khác")
+  * [Media Luật](https://luatvietnam.vn/tin-phap-luat/media-luat-c627-article.html "Media Luật")
+
+
+Thứ Hai, 02/08/2021, 15:00
+Tăng giảm cỡ chữ:
+Tác giả: [Bình Thảo](https://luatvietnam.vn/author/binh-thao-luatvietnam-12.html)
+Phép năm và chế độ trong những ngày nghỉ phép năm luôn là vấn đề quan tâm hàng đầu của nhiều người lao động. Tuy nhiên, liệu người lao động đã biết cách tính ngày phép này để đảm bảo quyền lợi cho mình?
+##  **Mỗi năm, người lao động có bao nhiêu ngày phép?**
+Theo quy định tại Điều 113 Bộ luật Lao động năm 2019, tùy vào điều kiện làm việc và đối tượng người lao động mà người lao động làm việc từ đủ 12 tháng trở lên thì mỗi năm được nghỉ hằng năm hưởng nguyên lương như sau:
+- 12 ngày làm việc: Người làm công việc trong điều kiện bình thường;
+- 14 ngày làm việc: Người lao động chưa thành niên, lao động là người khuyết tật, người làm nghề, công việc nặng nhọc, độc hại, nguy hiểm;
+- 16 ngày làm việc: Người làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm.
+Ngoài ra nếu làm việc đủ 05 năm cho một người sử dụng lao động thì số ngày nghỉ hằng năm của người lao động sẽ được tăng thêm tương ứng 01 ngày (_theo Điều 114 Bộ luật Lao động năm 2019_). 
+Riêng với người lao động làm việc chưa đủ 12 tháng thì số ngày nghỉ phép năm theo tỷ lệ tương ứng với số tháng làm việc. Căn cứ Điều 65 Nghị định [145/2020/NĐ-CP](https://luatvietnam.vn/lao-dong/nghi-dinh-145-2020-huong-dan-thi-hanh-dieu-kien-lao-dong-va-quan-he-lao-dong-195612-d1.html), thời gian làm việc tính hưởng phép năm bao gồm:
+  * Thời gian học nghề, tập nghề nếu sau khi hết thời gian học nghề, tập nghề mà người lao động làm việc cho người sử dụng lao động;
+  * Thời gian thử việc nếu người lao động tiếp tục làm việc cho người sử dụng lao động sau khi hết thời gian thử việc;
+  * Thời gian nghỉ việc riêng có hưởng lương;
+  * Thời gian nghỉ việc không hưởng lương nếu được người sử dụng lao động đồng ý nhưng cộng dồn không quá 01 tháng/năm;
+  * Thời gian nghỉ do tai nạn lao động, bệnh nghề nghiệp nhưng cộng dồn không quá 06 tháng;
+  * Thời gian nghỉ do ốm đau nhưng cộng dồn không quá 02 tháng/năm;
+  * Thời gian nghỉ hưởng chế độ thai sản;
+  * - Thời gian thực hiện các nhiệm vụ của tổ chức đại diện người lao động tại cơ sở mà được tính là thời gian làm việc;
+  * Thời gian phải ngừng việc, nghỉ việc không do lỗi của người lao động;
+  * Thời gian nghỉ vì bị tạm đình chỉ công việc nhưng sau đó được kết luận là không vi phạm hoặc không bị xử lý kỷ luật lao động.
+
+
+_Xem thêm:[Từ 2021, thời gian nghỉ phép năm sẽ tăng lên?](https://luatvietnam.vn/lao-dong-tien-luong/nghi-phep-nam-562-25180-article.html) _
+_**Cách tính ngày phép năm, ai cũng nên biết (Ảnh minh họa)**_
+## **Hướng dẫn cách tính ngày phép năm**
+Căn cứ Điều 113, Điều 114 Bộ luật Lao động và Điều 66 Nghị định 145/2020/NĐ-CP, người lao động có thể dễ dàng tính được số ngày nghỉ phép năm của mình như sau:
+*** Làm việc chưa đủ 12 tháng:**  
+|  **_Số ngày nghỉ_**  |  **_(Số ngày nghỉ hằng năm : 12)_**  |  **_Số tháng làm việc thực tế_**  |  
+| --- | --- | --- |  
+Trong đó:
+- Số ngày nghỉ hằng năm của người lao động là từ 12 đến 16 ngày tùy vào điều kiện làm việc và đối tượng lao động.
+- Trường hợp làm việc chưa đủ tháng: Nếu tổng số ngày làm việc và ngày nghỉ có hưởng lương của người lao động chiếm tỷ lệ từ 50% số ngày làm việc bình thường trong tháng thì được tính là 01 tháng làm việc.
+_Ví dụ: Chị A làm việc cho công ty X trong điều kiện bình thường. Chị A mới làm việc cho công ty X được 06 tháng. Tương ứng với đó, số ngày phép năm của chị A = 12 ngày : 12 x 6 tháng = 6 ngày._
+*** Làm việc từ đủ 12 tháng trở lên:**  
+|  **_Số ngày nghỉ phép_**  |  **_Số ngày nghỉ hàng năm_**  |  **_Số ngày nghỉ theo thâm niên_** **_(nếu có)_**  |  
+| --- | --- | --- |  
+Trong đó:
+- Số ngày nghỉ hằng năm của người lao động là từ 12 đến 16 ngày tùy vào điều kiện làm việc và đối tượng lao động.
+- Số ngày nghỉ theo thâm niên được xác định như sau: Cứ 05 năm làm việc cho một chủ sử dụng thì được tăng thêm 01 ngày.
+_Ví dụ: Anh A làm việc cho công ty X trong điều kiện bình thường, mỗi năm được nghỉ phép 12 ngày. Nếu anh A đã làm việc cho công ty X đủ 5 năm thì từ năm thứ 06 sẽ được nghỉ phép năm 13 ngày._
+##  **Thời gian nghỉ phép năm được hưởng những chế độ gì?**
+Theo Điều 113 Bộ luật Lao động năm 2019, người lao động khi **_nghỉ phép năm được hưởng nguyên lương theo hợp đồng lao động_**.
+Ngoài ra, theo khoản 5 Điều này, nếu chưa đến kỳ trả lương, người lao động _**nghỉ hằng năm còn được tạm ứng tiền lương**_. Số tiền ít nhất mà người lao động có thể tạm ứng trong trường hợp này là bằng tiền lương của những ngày nghỉ phép.
+Bên cạnh đó, người lao động cũng _**có thể được hỗ trợ thêm tiền tài xe và tiền lương khi nghỉ phép**_ nếu thuộc khoản 6 Điều 113 Bộ luật Lao động:
+> _6. Khi nghỉ hằng năm, nếu người lao động đi bằng các phương tiện đường bộ, đường sắt, đường thủy mà số ngày đi đường cả đi và về trên 02 ngày thì từ ngày thứ 03 trở đi được tính thêm thời gian đi đường ngoài ngày nghỉ hằng năm và chỉ được tính cho 01 lần nghỉ trong năm._
+Như vậy, nếu người lao động đi bằng các phương tiện đường bộ, đường sắt, đường thủy mà số ngày đi đường cả đi và về trên 02 ngày thì từ ngày thứ 03 trở đi được tính thêm thời gian đi đường ngoài ngày nghỉ hằng năm và chỉ được tính cho 01 lần nghỉ trong năm.
+Tiền tàu xe, tiền lương những ngày đi đường ngoài ngày nghỉ hàng năm trong trường hợp này sẽ do hai bên thoả thuận (_căn cứ khoản 1 Điều 67 Nghị định 145/2020/NĐ-CP_).
+Theo đó, người lao động cần lưu ý những quy định trên để đòi hỏi quyền lợi chính đáng trong thời gian nghỉ hằng năm của mình.
+_Xem thêm:[Quy định mới về nghỉ phép năm, người lao động cần biết](https://luatvietnam.vn/lao-dong-tien-luong/thay-doi-ve-che-do-nghi-phep-nam-tu-2021-562-28143-article.html)_
+Trên đây là hướng dẫn về **cách tính ngày phép năm**. Nếu còn vấn đề vướng mắc, bạn đọc vui lòng liên hệ: **1900.6192** để được hỗ trợ.
+**> > [Quy định về nghỉ phép năm khi chưa làm đủ 12 tháng](https://luatvietnam.vn/lao-dong-tien-luong/nghi-phep-nam-khi-chua-lam-du-12-thang-562-27595-article.html) **
+**> > [Quy định mới nhất về nghỉ việc riêng, nghỉ không lương](https://luatvietnam.vn/lao-dong-tien-luong/quy-dinh-ve-nghi-viec-rieng-nghi-khong-luong-562-27038-article.html) **
+**> > [Hướng dẫn cách tính tiền phép năm khi nghỉ việc](https://luatvietnam.vn/lao-dong-tien-luong/thanh-toan-tien-phep-nam-the-562-28507-article.html)**
+để được giải đáp qua [tổng đài](https://luatvietnam.vn/dich-vu-tong-dai-tu-van.html)
+để sử dụng dịch vụ [Luật sư tư vấn](https://luatvietnam.vn/dich-vu/tu-van-phap-luat.html) (CÓ PHÍ)
+Đánh giá bài viết:
+Bài viết đã giải quyết được vấn đề của bạn chưa?
+Rồi Chưa
+  * Chủ đề:
+  * [Bộ luật Lao động 2019](https://luatvietnam.vn/bo-luat-lao-dong-2019-3157-tag.html)
+
+
+### [Từ 10/9/2026, doanh nghiệp vi phạm quy định thử việc bị phạt bao nhiêu?](https://luatvietnam.vn/lao-dong-tien-luong/tu-10-9-2026-doanh-nghiep-vi-pham-quy-dinh-thu-viec-bi-phat-bao-nhieu-562-111049-article.html "Từ 10/9/2026, doanh nghiệp vi phạm quy định thử việc bị phạt bao nhiêu?")
+Từ ngày 10/9/2026, doanh nghiệp vi phạm quy định về thử việc có thể bị phạt tiền và buộc khắc phục quyền lợi cho người lao động. Dưới đây là các mức phạt và những quy định doanh nghiệp, người lao động cần biết trong thời gian thử việc. 
+7 giờ trước
+### [Quy định về giờ làm việc ban đêm mới nhất](https://luatvietnam.vn/lao-dong-tien-luong/gio-lam-viec-ban-dem-562-27202-article.html "Quy định về giờ làm việc ban đêm mới nhất")
+Giờ làm việc là nội dung được người lao động rất quan tâm. Vậy theo Bộ luật Lao động năm 2019, giờ làm việc ban đêm của người lao động được quy định như thế nào?
+02/08/2026
+### [Doanh nghiệp được chuyển người lao động làm công việc khác so với hợp đồng lao động trong trường hợp nào?](https://luatvietnam.vn/lao-dong-tien-luong/doanh-nghiep-duoc-chuyen-nguoi-lao-dong-lam-cong-viec-khac-so-voi-hop-dong-lao-dong-trong-truong-hop-nao-562-110936-article.html "Doanh nghiệp được chuyển người lao động làm công việc khác so với hợp đồng lao động trong trường hợp nào?")
+Trong quá trình sản xuất, kinh doanh, doanh nghiệp có thể phát sinh nhu cầu tạm thời bố trí người lao động làm công việc khác với thỏa thuận ban đầu. Vậy pháp luật cho phép doanh nghiệp thực hiện việc điều chuyển này trong những trường hợp nào và phải bảo đảm điều kiện gì?
+31/07/2026
+### [Phí công đoàn tháng 7/2026: Hạn đóng và cách đóng mới nhất](https://luatvietnam.vn/lao-dong-tien-luong/phi-cong-doan-thang-7-2026-han-dong-va-cach-dong-moi-nhat-562-110962-article.html "Phí công đoàn tháng 7/2026: Hạn đóng và cách đóng mới nhất")
+Đóng phí công đoàn đúng hạn, đúng phương thức là nội dung doanh nghiệp cần lưu ý trong kỳ tháng 7/2026. Bài viết dưới đây tổng hợp quy định mới nhất về thời hạn và cách thức đóng phí công đoàn để doanh nghiệp thuận tiện thực hiện. 
+30/07/2026
+### [Tăng lương tối thiểu vùng 2027: Tác động đến doanh nghiệp, người lao động thế nào? ](https://luatvietnam.vn/lao-dong-tien-luong/tang-luong-toi-thieu-vung-2027-tac-dong-den-doanh-nghiep-nguoi-lao-dong-the-nao-562-110948-article.html "Tăng lương tối thiểu vùng 2027: Tác động đến doanh nghiệp, người lao động thế nào? ")
+Dự kiến từ ngày 01/01/2027, mức lương tối thiểu vùng sẽ được điều chỉnh tăng đối với người lao động làm việc theo hợp đồng lao động. Vậy khi lương tối thiểu vùng tăng sẽ tác động thế nào đến doanh nghiệp cũng như người lao động?
+28/07/2026
+### [Lịch chi trả lương hưu tháng 8/2026 của 34 tỉnh, thành](https://luatvietnam.vn/lao-dong-tien-luong/lich-chi-tra-luong-huu-thang-8-2026-cua-34-tinh-thanh-562-110928-article.html "Lịch chi trả lương hưu tháng 8/2026 của 34 tỉnh, thành")
+Tháng 8/2026, Bảo hiểm xã hội (BHXH) Việt Nam tiếp tục thực hiện chi trả lương hưu, trợ cấp bảo hiểm xã hội theo lịch thống nhất trên toàn quốc. Tuy nhiên, thời điểm người hưởng nhận tiền qua tài khoản không hoàn toàn giống nhau giữa các địa phương. 
+28/07/2026
+### [Hợp đồng 111: Đối tượng áp dụng, cách tính lương, hồ sơ hưởng](https://luatvietnam.vn/lao-dong-tien-luong/hop-dong-111-doi-tuong-ap-dung-cach-tinh-luong-ho-so-huong-562-110839-article.html "Hợp đồng 111: Đối tượng áp dụng, cách tính lương, hồ sơ hưởng")
+Từ ngày 01/7/2026, quy định về hợp đồng theo Nghị định 111/2022/NĐ-CP đã có nhiều thay đổi quan trọng đối với đơn vị sự nghiệp công lập khi Chính phủ ban hành Nghị định 235/2026/NĐ-CP. Vậy "Hợp đồng 111" là gì, hiện nay áp dụng cho những đối tượng nào, tiền lương được tính ra sao?
+26/07/2026
+### [Mức phạt chậm đóng bảo hiểm xã hội từ ngày 20/9/2026](https://luatvietnam.vn/lao-dong-tien-luong/muc-phat-cham-dong-bao-hiem-xa-hoi-562-110843-article.html "Mức phạt chậm đóng bảo hiểm xã hội từ ngày 20/9/2026")
+Mức phạt chậm đóng bảo hiểm xã hội bắt buộc từ ngày 20/9/2026 sẽ áp dụng theo quy định mới tại Nghị định 283/2026/NĐ-CP.
+25/07/2026
+### [Mức lương tối thiểu vùng 2027 chi tiết của 34 tỉnh, thành (dự kiến)](https://luatvietnam.vn/lao-dong-tien-luong/muc-luong-toi-thieu-vung-2027-chi-tiet-cua-34-tinh-thanh-du-kien-562-110742-article.html "Mức lương tối thiểu vùng 2027 chi tiết của 34 tỉnh, thành \(dự kiến\)")
+Từ ngày 01/01/2027, Chính phủ dự kiến điều chỉnh tăng mức lương tối thiểu vùng đối với người lao động làm việc theo hợp đồng lao động. Dưới đây là danh mục chi tiết các xã, phường, đặc khu thuộc từng vùng lương tối thiểu. 
+22/07/2026
+### [Vi phạm về trả lương, doanh nghiệp bị phạt thế nào từ 10/9/2026?](https://luatvietnam.vn/lao-dong-tien-luong/vi-pham-ve-tra-luong-doanh-nghiep-bi-phat-the-nao-tu-10-9-2026-562-110737-article.html "Vi phạm về trả lương, doanh nghiệp bị phạt thế nào từ 10/9/2026?")
+Từ ngày 10/9/2026, doanh nghiệp có hành vi vi phạm quy định về trả lương cho người lao động có thể bị xử phạt hành chính. Vậy mức phạt cụ thể đối với từng hành vi được quy định thế nào? 
+22/07/2026
+CHÍNH SÁCH BẢO VỆ DỮ LIỆU CÁ NHÂN

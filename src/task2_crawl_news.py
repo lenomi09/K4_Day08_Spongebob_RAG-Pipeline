@@ -33,10 +33,15 @@ def setup_directory():
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# TODO: Điền danh sách URL bài viết cần crawl
+# Bai viet ve luat lao dong (thu viec, tang ca, nghi phep, tro cap thoi viec, sa thai)
+# Luu y: thuvienphapluat.vn chan bot (crawl ve rong) -> chi dung luatvietnam.vn, da test crawl thanh cong
 ARTICLE_URLS = [
-    # Ví dụ (trang công khai Shopee Vietnam):
-    # "https://help.shopee.vn/portal/4/article/...",
+    "https://luatvietnam.vn/lao-dong-tien-luong/thoi-gian-thu-viec-la-bao-lau-562-29407-article.html",
+    "https://luatvietnam.vn/lao-dong-tien-luong/quy-dinh-thoi-gian-lam-them-gio-562-92730-article.html",
+    "https://luatvietnam.vn/lao-dong-tien-luong/cach-tinh-ngay-phep-562-19640-article.html",
+    "https://luatvietnam.vn/lao-dong-tien-luong/cach-tinh-tro-cap-thoi-viec-tu-2021-145-562-28112-article.html",
+    "https://luatvietnam.vn/lao-dong-tien-luong/don-phuong-cham-dut-hop-dong-lao-dong-562-33360-article.html",
+    "https://luatvietnam.vn/tin-phap-luat/hau-qua-khi-don-phuong-cham-dut-hop-dong-lao-dong-trai-phap-luat-230-19047-article.html",
 ]
 
 
@@ -52,18 +57,32 @@ async def crawl_article(url: str) -> dict:
             "content_markdown": str
         }
     """
-    from crawl4ai import AsyncWebCrawler
+    from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+    from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+    from crawl4ai.content_filter_strategy import PruningContentFilter
 
-    # TODO: Implement crawling logic
-    # async with AsyncWebCrawler() as crawler:
-    #     result = await crawler.arun(url=url)
-    #     return {
-    #         "url": url,
-    #         "title": result.metadata.get("title", "Unknown"),
-    #         "date_crawled": datetime.now().isoformat(),
-    #         "content_markdown": result.markdown,
-    #     }
-    raise NotImplementedError("Implement crawl_article")
+    # PruningContentFilter loai bo menu/navbar/footer (boilerplate co mat do chu thap),
+    # chi giu lai phan noi dung chinh cua bai viet — neu khong content se lan menu trang web.
+    config = CrawlerRunConfig(
+        markdown_generator=DefaultMarkdownGenerator(
+            content_filter=PruningContentFilter(threshold=0.48, threshold_type="fixed")
+        )
+    )
+
+    async with AsyncWebCrawler() as crawler:
+        result = await crawler.arun(url=url, config=config)
+
+        markdown = result.markdown
+        # fit_markdown = ban da loc boilerplate; raw_markdown = ban day du (menu, footer,...)
+        content = getattr(markdown, "fit_markdown", None) or str(markdown or "")
+
+        metadata = result.metadata or {}
+        return {
+            "url": url,
+            "title": metadata.get("title", "Unknown"),
+            "date_crawled": datetime.now().isoformat(),
+            "content_markdown": content,
+        }
 
 
 async def crawl_all():
@@ -72,13 +91,20 @@ async def crawl_all():
 
     for i, url in enumerate(ARTICLE_URLS, 1):
         print(f"[{i}/{len(ARTICLE_URLS)}] Crawling: {url}")
-        article = await crawl_article(url)
+        try:
+            article = await crawl_article(url)
+        except Exception as e:
+            print(f"  LOI, bo qua: {e}")
+            continue
 
-        # Lưu file JSON
+        if len(article.get("content_markdown", "").strip()) < 500:
+            print(f"  CANH BAO: noi dung qua ngan ({len(article.get('content_markdown', ''))} ky tu) — co the la trang chan bot, can doi URL khac")
+
+        # Lưu file JSON — bat buoc encoding="utf-8", Windows mac dinh cp1252 se loi voi tieng Viet
         filename = f"article_{i:02d}.json"
         filepath = DATA_DIR / filename
-        filepath.write_text(json.dumps(article, ensure_ascii=False, indent=2))
-        print(f"  ✓ Saved: {filepath}")
+        filepath.write_text(json.dumps(article, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"  OK: Saved {filepath.name} ({len(article.get('content_markdown', ''))} ky tu)")
 
 
 if __name__ == "__main__":

@@ -12,6 +12,9 @@ venv/
 # Temp PDF conversion cache
 data/_tmp_pdf/
 
+# Vector store (moi nguoi tu chay Task 4 de sinh lai - tranh conflict file sqlite)
+chroma_db/
+
 # Temp / cache
 .pytest_cache/
 *.tmp
