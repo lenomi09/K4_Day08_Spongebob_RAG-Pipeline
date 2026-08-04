@@ -1,17 +1,77 @@
 [
   {
-    "question": "Người mua có thể yêu cầu trả hàng/hoàn tiền trong thời hạn bao lâu sau khi nhận hàng?",
-    "expected_answer": "Trong vòng 15 ngày kể từ khi giao hàng thành công (24 giờ đối với thực phẩm tươi sống/đông lạnh).",
-    "expected_context": "Trang Returns and Refunds Policy, mục Return/Refund Eligibility"
+    "question": "Thời gian thử việc tối đa đối với vị trí yêu cầu trình độ đại học là bao lâu?",
+    "expected_answer": "Thời gian thử việc đối với công việc yêu cầu trình độ chuyên môn kỹ thuật từ cao đẳng trở lên là không quá 60 ngày.",
+    "expected_context": "Bộ luật Lao động 2019 quy định thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn kỹ thuật từ cao đẳng trở lên là 60 ngày."
   },
   {
-    "question": "Shopee hỗ trợ những phương thức thanh toán nào?",
-    "expected_answer": "ShopeePay Wallet, thẻ tín dụng/ghi nợ, trả góp qua thẻ, QR Code, chuyển khoản qua app ngân hàng, thẻ NAPAS, Apple Pay, Google Pay, và COD.",
-    "expected_context": "Trang Payment Methods Overview"
+    "question": "Lương thử việc tối thiểu phải bằng bao nhiêu phần trăm lương chính thức?",
+    "expected_answer": "Lương thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+    "expected_context": "Điều 26 Bộ luật Lao động 2019 quy định tiền lương của người lao động trong thời gian thử việc ít nhất phải bằng 85% mức lương của công việc đó."
   },
   {
-    "question": "Người bán không được đăng bán những sản phẩm nào?",
-    "expected_answer": "Hàng giả/nhái, sản phẩm bất hợp pháp, vi phạm sở hữu trí tuệ, và các mặt hàng nằm trong danh sách cấm của sàn.",
-    "expected_context": "Trang Product Listing Regulations, mục Prohibited Content"
+    "question": "Thời giờ làm việc bình thường tối đa trong một ngày là bao nhiêu?",
+    "expected_answer": "Thời giờ làm việc bình thường không quá 8 giờ trong một ngày và không quá 48 giờ trong một tuần.",
+    "expected_context": "Bộ luật Lao động 2019 quy định thời giờ làm việc bình thường không quá 8 giờ trong một ngày và 48 giờ trong một tuần."
+  },
+  {
+    "question": "Người lao động làm thêm giờ có được trả thêm tiền không?",
+    "expected_answer": "Người lao động làm thêm giờ được trả lương theo mức cao hơn so với tiền lương giờ làm việc bình thường.",
+    "expected_context": "Bộ luật Lao động quy định người lao động làm thêm giờ được trả lương làm thêm giờ theo các mức phần trăm khác nhau tùy thời điểm làm thêm."
+  },
+  {
+    "question": "Người lao động có bao nhiêu ngày nghỉ phép năm?",
+    "expected_answer": "Người lao động làm việc đủ 12 tháng được nghỉ hằng năm hưởng nguyên lương theo số ngày quy định của Bộ luật Lao động.",
+    "expected_context": "Bộ luật Lao động 2019 quy định về ngày nghỉ hằng năm của người lao động."
+  },
+  {
+    "question": "Công ty có được ký hợp đồng lao động bằng lời nói không?",
+    "expected_answer": "Một số trường hợp hợp đồng lao động có thể được giao kết bằng lời nói theo quy định pháp luật.",
+    "expected_context": "Bộ luật Lao động 2019 quy định hình thức hợp đồng lao động bằng văn bản, điện tử hoặc bằng lời nói trong một số trường hợp."
+  },
+  {
+    "question": "Người lao động có quyền tự nghỉ việc không?",
+    "expected_answer": "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nếu đáp ứng điều kiện và thời hạn báo trước.",
+    "expected_context": "Bộ luật Lao động 2019 quy định quyền đơn phương chấm dứt hợp đồng lao động của người lao động."
+  },
+  {
+    "question": "Công ty sa thải nhân viên có cần báo trước không?",
+    "expected_answer": "Việc sa thải phải tuân thủ căn cứ, trình tự và thủ tục xử lý kỷ luật lao động theo quy định.",
+    "expected_context": "Bộ luật Lao động 2019 quy định về xử lý kỷ luật lao động và hình thức sa thải."
+  },
+  {
+    "question": "Người lao động có được nghỉ lễ hưởng nguyên lương không?",
+    "expected_answer": "Người lao động được nghỉ lễ, tết và hưởng nguyên lương theo quy định.",
+    "expected_context": "Bộ luật Lao động 2019 quy định các ngày nghỉ lễ, tết mà người lao động được hưởng nguyên lương."
+  },
+  {
+    "question": "Hợp đồng lao động cần có những nội dung nào?",
+    "expected_answer": "Hợp đồng lao động cần có thông tin về công việc, địa điểm, tiền lương, thời giờ làm việc, nghỉ ngơi và quyền nghĩa vụ của các bên.",
+    "expected_context": "Bộ luật Lao động 2019 quy định nội dung chủ yếu của hợp đồng lao động."
+  },
+  {
+    "question": "Người lao động làm việc ban đêm có được trả thêm tiền không?",
+    "expected_answer": "Người lao động làm việc vào ban đêm được trả thêm tiền lương theo quy định.",
+    "expected_context": "Bộ luật Lao động 2019 quy định tiền lương đối với thời gian làm việc vào ban đêm."
+  },
+  {
+    "question": "Doanh nghiệp không trả lương đúng hạn có bị xử phạt không?",
+    "expected_answer": "Doanh nghiệp vi phạm quy định về trả lương có thể bị xử phạt hành chính.",
+    "expected_context": "Nghị định 12/2022/NĐ-CP quy định xử phạt vi phạm hành chính trong lĩnh vực lao động."
+  },
+  {
+    "question": "Doanh nghiệp có được bắt thử việc nhiều lần cho một công việc không?",
+    "expected_answer": "Người sử dụng lao động chỉ được thử việc một lần đối với một công việc.",
+    "expected_context": "Bộ luật Lao động 2019 quy định mỗi công việc chỉ được thử việc một lần."
+  },
+  {
+    "question": "Thời hạn báo trước khi người lao động nghỉ việc là bao lâu?",
+    "expected_answer": "Thời hạn báo trước phụ thuộc vào loại hợp đồng lao động và trường hợp cụ thể theo quy định.",
+    "expected_context": "Bộ luật Lao động 2019 quy định thời hạn báo trước khi đơn phương chấm dứt hợp đồng lao động."
+  },
+  {
+    "question": "Vi phạm quy định về thử việc doanh nghiệp có bị phạt không?",
+    "expected_answer": "Doanh nghiệp vi phạm quy định về thử việc có thể bị xử phạt hành chính.",
+    "expected_context": "Nghị định 12/2022/NĐ-CP quy định xử phạt vi phạm hành chính về hành vi vi phạm quy định thử việc."
   }
 ]
