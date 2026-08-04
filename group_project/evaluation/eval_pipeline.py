@@ -367,7 +367,20 @@ def export_results(comparison: dict):
 
 
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Chỉ chạy N câu đầu (test nhanh trước khi chạy full, tránh chạm rate limit 50 req/ngày)",
+    )
+    args = parser.parse_args()
+
     golden_dataset = load_golden_dataset()
+    if args.limit:
+        golden_dataset = golden_dataset[: args.limit]
     print(f"Loaded {len(golden_dataset)} test cases")
 
     comparison = compare_configs(golden_dataset)

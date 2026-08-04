@@ -59,6 +59,23 @@ EMBEDDING_DIM = 1024
 VECTOR_STORE = "chromadb"  # "chromadb" | "weaviate" | "faiss"
 COLLECTION_NAME = "labor_law_docs"
 
+# Gan nhan doi tuong ap dung cho tung tai lieu (yeu cau rieng cua K4 Variant).
+# Key = mot phan ten file (khong dau), Value = employee / employer / both
+CUSTOMER_ROLE_MAP = {
+    "xu-phat": "employer",
+    "nghi-dinh-145": "both",
+    "bo-luat-lao-dong": "both",
+}
+
+
+def get_customer_role(source_name: str) -> str:
+    """Suy ra doi tuong ap dung tu ten file."""
+    name = source_name.lower()
+    for fragment, role in CUSTOMER_ROLE_MAP.items():
+        if fragment in name:
+            return role
+    return "both"
+
 
 # =============================================================================
 # IMPLEMENTATION
@@ -102,7 +119,11 @@ def chunk_documents(documents: list[dict]) -> list[dict]:
         for i, chunk_text in enumerate(splits):
             chunks.append({
                 "content": chunk_text,
-                "metadata": {**doc["metadata"], "chunk_index": i},
+                "metadata": {
+                    **doc["metadata"],
+                    "chunk_index": i,
+                    "customer_role": get_customer_role(doc["metadata"]["source"]),
+                },
             })
     return chunks
 

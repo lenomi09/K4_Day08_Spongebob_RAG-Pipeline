@@ -35,8 +35,23 @@ STANDARDIZED_DIR = Path(__file__).parent.parent / "data" / "standardized"
 PDF_CACHE_DIR = Path(__file__).parent.parent / "data" / "pageindex_pdfs"
 DOC_IDS_FILE = Path(__file__).parent.parent / "data" / "pageindex_doc_ids.json"
 
-# DejaVu Sans hỗ trợ dấu tiếng Việt — font core của fpdf2 (Helvetica...) thì không.
-_UNICODE_FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+# Font core cua fpdf2 (Helvetica...) khong ho tro dau tieng Viet -> phai nap font Unicode.
+# Duong dan khac nhau theo he dieu hanh, thu lan luot cho toi khi tim duoc file ton tai.
+_UNICODE_FONT_CANDIDATES = [
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",  # Linux
+    r"C:\Windows\Fonts\arial.ttf",                       # Windows
+    "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",  # macOS
+]
+
+
+def _find_unicode_font() -> str:
+    for path in _UNICODE_FONT_CANDIDATES:
+        if Path(path).exists():
+            return path
+    raise FileNotFoundError(
+        f"Khong tim thay font Unicode nao trong: {_UNICODE_FONT_CANDIDATES}. "
+        "Can 1 file .ttf ho tro tieng Viet de convert PDF."
+    )
 
 
 def _md_to_pdf(md_path: Path, pdf_path: Path):
@@ -45,8 +60,8 @@ def _md_to_pdf(md_path: Path, pdf_path: Path):
 
     pdf = FPDF()
     pdf.add_page()
-    pdf.add_font("DejaVu", fname=_UNICODE_FONT_PATH)
-    pdf.set_font("DejaVu", size=11)
+    pdf.add_font("UnicodeFont", fname=_find_unicode_font())
+    pdf.set_font("UnicodeFont", size=11)
 
     text = md_path.read_text(encoding="utf-8")
     pdf.multi_cell(0, 6, text)

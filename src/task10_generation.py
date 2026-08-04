@@ -56,7 +56,8 @@ Quy tắc bắt buộc:
 2. Mỗi khẳng định phải có trích dẫn ngay sau, ví dụ: [Bộ luật Lao động 2019, Điều 25]
 3. Nếu context không đủ thông tin → trả lời: "Tôi không thể xác minh thông tin này từ nguồn hiện có"
 4. Trả lời bằng tiếng Việt, có cấu trúc rõ ràng theo đoạn văn
-5. Không suy luận hay mở rộng ngoài những gì được nêu trong context"""
+5. Không suy luận hay mở rộng ngoài những gì được nêu trong context
+6. Nhắc người đọc đây là thông tin tham khảo, không thay thế tư vấn pháp lý chính thức"""
 
 
 # =============================================================================
@@ -105,10 +106,14 @@ def format_context(chunks: list[dict]) -> str:
     """
     context_parts = []
     for i, chunk in enumerate(chunks, 1):
-        source = chunk.get("metadata", {}).get("source", f"Source {i}")
-        doc_type = chunk.get("metadata", {}).get("type", "unknown")
+        meta = chunk.get("metadata", {}) or {}
+        source = meta.get("source", f"Source {i}")
+        doc_type = meta.get("type", "unknown")
+        # customer_role (K4 Variant): employee/employer/both — giup LLM biet quy dinh
+        # nay ap dung cho doi tuong nao.
+        role = meta.get("customer_role", "both")
         context_parts.append(
-            f"[Document {i} | Source: {source} | Type: {doc_type}]\n"
+            f"[Document {i} | Source: {source} | Type: {doc_type} | Áp dụng cho: {role}]\n"
             f"{chunk['content']}\n"
         )
     return "\n---\n".join(context_parts)
@@ -118,7 +123,12 @@ def format_context(chunks: list[dict]) -> str:
 # GENERATION
 # =============================================================================
 
-def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
+def generate_with_citation(
+    query: str,
+    top_k: int = TOP_K,
+    history: list[dict] | None = None,
+    use_reranking: bool = True,
+) -> dict:
     """
     End-to-end RAG generation có citation.
 
@@ -132,6 +142,11 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
 
     Args:
         query: Câu hỏi của user
+        top_k: Số chunks đưa vào context
+        history: Lịch sử hội thoại [{'role': 'user'|'assistant', 'content': str}]
+                 để hỗ trợ câu hỏi nối tiếp ("còn trường hợp kia thì sao?")
+        use_reranking: Có áp dụng RRF rerank hay không — tắt để so sánh A/B
+                       (hybrid+rerank vs hybrid thô) ngay trên UI
 
     Returns:
         {
@@ -141,7 +156,13 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
         }
     """
     # Step 1: Retrieve
-    chunks = retrieve(query, top_k=top_k)
+    chunks = retrieve(query, top_k=top_k, use_reranking=use_reranking)
+    if not chunks:
+        return {
+            "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+            "sources": [],
+            "retrieval_source": "none",
+        }
 
     # Step 2: Reorder
     reordered = reorder_for_llm(chunks)
@@ -152,18 +173,27 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
     # Step 4: Build prompt
     user_message = f"""Context:\n{context}\n\n---\n\nQuestion: {query}"""
 
+    api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        return {
+            "answer": "Chưa cấu hình OPENROUTER_API_KEY trong file .env",
+            "sources": chunks,
+            "retrieval_source": chunks[0].get("source", "hybrid"),
+        }
+
     # Step 5: Call LLM (OpenRouter — OpenAI-compatible API)
     from openai import OpenAI
 
-    api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
-    client = OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1")
+    messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+    # Chi lay 4 luot gan nhat de prompt khong phinh qua dai
+    for m in (history or [])[-4:]:
+        messages.append({"role": m["role"], "content": m["content"]})
+    messages.append({"role": "user", "content": user_message})
 
+    client = OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1")
     response = client.chat.completions.create(
         model=LLM_MODEL,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_message},
-        ],
+        messages=messages,
         temperature=TEMPERATURE,
         top_p=TOP_P,
     )

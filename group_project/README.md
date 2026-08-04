@@ -1,4 +1,4 @@
-# Bài Tập Nhóm — E-commerce Support RAG Chatbot
+# Bài Tập Nhóm — Trợ Lý Hỏi Đáp Luật Lao Động
 
 ## Mục Tiêu
 
@@ -70,8 +70,25 @@ Xem code mẫu (DeepEval/RAGAS/TruLens) chi tiết trong `README.md` gốc mục
 ## Kiến Trúc Hệ Thống
 
 ```
-[Vẽ diagram kiến trúc ở đây]
+                    ┌─ Semantic Search (ChromaDB + BAAI/bge-m3, cosine) ─┐
+   Câu hỏi ────────►│                                                    ├──► RRF (k=60) ──► Rerank
+                    └─ Lexical Search (BM25, rank-bm25) ─────────────────┘         │
+                                                                                    │
+                    ┌───────────────────────────────────────────────────────────────┘
+                    │
+                    ├─ cosine gốc ≥ 0.5  ──► giữ kết quả Hybrid ──┐
+                    │                                              ├──► Reorder (chống lost-
+                    └─ cosine gốc < 0.5  ──► PageIndex (fallback) ┘     in-the-middle)
+                                                                              │
+                                                                              ▼
+                                                          Format context (kèm nguồn + đối
+                                                          tượng áp dụng) ──► LLM (OpenRouter,
+                                                          openai/gpt-oss-20b:free) ──► Trả lời
+                                                          có trích dẫn [Nguồn, Điều]
 ```
+
+Chi tiết pipeline, bẫy kỹ thuật RRF/fallback và số liệu calibrate threshold — xem `README.md`
+gốc mục "Kiến Trúc Hệ Thống".
 
 ---
 
@@ -79,10 +96,9 @@ Xem code mẫu (DeepEval/RAGAS/TruLens) chi tiết trong `README.md` gốc mục
 
 | Thành viên | MSSV | Nhiệm vụ | Trạng thái |
 |-----------|------|----------|------------|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| Lê Ngọc Minh | 2A202601228 | Team Leader & RAG Architect — Task 3, 6, 7, 9, điều phối chung, thiết kế UI | Hoàn thành |
+| Nguyễn Văn Hải | 2A202601708 | Data & Dense Search Dev — Task 1, 4, 5, 8 | Hoàn thành |
+| Hồ Thanh Bình | 2A202601832 | Chatbot & Evaluation Dev — Task 2, 10, `app.py`, golden dataset, `eval_pipeline.py` | Hoàn thành |
 
 ---
 

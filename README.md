@@ -549,9 +549,33 @@ run_dashboard()
 
 ### Kiến Trúc Hệ Thống
 
+**Chủ đề:** Trợ Lý Hỏi Đáp Luật Lao Động — dữ liệu gồm Bộ luật Lao động 2019, Nghị định
+145/2020, Nghị định 12/2022 và 6 bài báo về luật lao động (thử việc, làm thêm giờ, nghỉ phép,
+trợ cấp thôi việc, chấm dứt hợp đồng).
+
 ```
-[Vẽ diagram kiến trúc ở đây]
+                    ┌─ Semantic Search (ChromaDB + BAAI/bge-m3, cosine) ─┐
+   Câu hỏi ────────►│                                                    ├──► RRF (k=60) ──► Rerank
+                    └─ Lexical Search (BM25, rank-bm25) ─────────────────┘         │
+                                                                                    │
+                    ┌───────────────────────────────────────────────────────────────┘
+                    │
+                    ├─ cosine gốc ≥ 0.5  ──► giữ kết quả Hybrid ──┐
+                    │                                              ├──► Reorder (chống lost-
+                    └─ cosine gốc < 0.5  ──► PageIndex (fallback) ┘     in-the-middle)
+                                                                              │
+                                                                              ▼
+                                                          Format context (kèm nguồn + đối
+                                                          tượng áp dụng) ──► LLM (OpenRouter,
+                                                          openai/gpt-oss-20b:free) ──► Trả lời
+                                                          có trích dẫn [Nguồn, Điều]
 ```
+
+**Bẫy kỹ thuật đã xử lý:** điểm RRF sau khi gộp chỉ phản ánh thứ hạng (top-1 luôn ≈ 1/61 ≈
+0.0164 bất kể nội dung có liên quan hay không), nên quyết định kích hoạt fallback PageIndex
+dùng **điểm cosine gốc của Semantic Search** (đo trước khi qua RRF), tách biệt hoàn toàn khỏi
+điểm RRF dùng để sắp xếp kết quả cuối cùng. Ngưỡng `0.5` được đo thực tế trên corpus: câu hỏi
+đúng chủ đề cho cosine ~0.66-0.76, câu hỏi lạc đề cho ~0.35-0.43.
 
 ---
 
@@ -559,10 +583,9 @@ run_dashboard()
 
 | Thành viên | MSSV | Nhiệm vụ | Trạng thái |
 |-----------|------|----------|------------|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| Lê Ngọc Minh | 2A202601228 | Team Leader & RAG Architect — Task 3 (convert markdown), Task 6 (BM25), Task 7 (RRF rerank), Task 9 (retrieval pipeline + fallback), điều phối chung, thiết kế UI | Hoàn thành |
+| Nguyễn Văn Hải | 2A202601708 | Data & Dense Search Dev — Task 1 (thu thập văn bản luật), Task 4 (chunking & indexing), Task 5 (semantic search), Task 8 (PageIndex vectorless) | Hoàn thành |
+| Hồ Thanh Bình | 2A202601832 | Chatbot & Evaluation Dev — Task 2 (crawl bài báo), Task 10 (generation có citation), `app.py`, golden dataset, `eval_pipeline.py` | Hoàn thành |
 
 ---
 
