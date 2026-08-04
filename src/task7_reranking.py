@@ -126,28 +126,24 @@ def rerank_rrf(
     Returns:
         List of top_k candidates sorted by RRF score descending.
     """
-    # TODO: Implement RRF
-    #
-    # rrf_scores = {}  # content -> score
-    # content_map = {}  # content -> full dict
-    #
-    # for ranked_list in ranked_lists:
-    #     for rank, item in enumerate(ranked_list, 1):
-    #         key = item["content"]
-    #         rrf_scores[key] = rrf_scores.get(key, 0) + 1 / (k + rank)
-    #         content_map[key] = item
-    #
-    # # Sort by RRF score
-    # sorted_items = sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)
-    #
-    # results = []
-    # for content, score in sorted_items[:top_k]:
-    #     item = content_map[content].copy()
-    #     item["score"] = score
-    #     results.append(item)
-    #
-    # return results
-    raise NotImplementedError("Implement rerank_rrf")
+    rrf_scores: dict[str, float] = {}
+    content_map: dict[str, dict] = {}
+
+    for ranked_list in ranked_lists:
+        for rank, item in enumerate(ranked_list, 1):
+            key = item["content"]
+            rrf_scores[key] = rrf_scores.get(key, 0) + 1 / (k + rank)
+            content_map[key] = item
+
+    sorted_items = sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)
+
+    results = []
+    for content, score in sorted_items[:top_k]:
+        item = content_map[content].copy()
+        item["score"] = score
+        results.append(item)
+
+    return results
 
 
 # =============================================================================
@@ -178,8 +174,9 @@ def rerank(
         # Cần query_embedding - embed query trước
         raise NotImplementedError("Call rerank_mmr with query_embedding")
     elif method == "rrf":
-        # RRF cần nhiều ranked lists - gọi riêng
-        raise NotImplementedError("Call rerank_rrf with ranked_lists")
+        # Interface chung nhận 1 candidates list (đã có thứ hạng) — coi đó là 1 ranker.
+        # Khi gộp nhiều ranker thật (Task 9: semantic + BM25), gọi rerank_rrf(ranked_lists) trực tiếp.
+        return rerank_rrf([candidates], top_k)
     else:
         raise ValueError(f"Unknown rerank method: {method}")
 
@@ -187,10 +184,10 @@ def rerank(
 if __name__ == "__main__":
     # Test with dummy data
     dummy_candidates = [
-        {"content": "Chính sách trả hàng và hoàn tiền Shopee trong 15 ngày", "score": 0.8, "metadata": {}},
-        {"content": "Các phương thức thanh toán hỗ trợ trên Shopee Vietnam", "score": 0.6, "metadata": {}},
-        {"content": "Quy định đăng bán sản phẩm dành cho người bán", "score": 0.5, "metadata": {}},
+        {"content": "Thời gian thử việc tối đa theo Bộ luật Lao động 2019", "score": 0.8, "metadata": {}},
+        {"content": "Quy định về làm thêm giờ và cách tính lương tăng ca", "score": 0.6, "metadata": {}},
+        {"content": "Trợ cấp thôi việc khi đơn phương chấm dứt hợp đồng lao động", "score": 0.5, "metadata": {}},
     ]
-    results = rerank("chính sách trả hàng shopee", dummy_candidates, top_k=2)
+    results = rerank("thời gian thử việc tối đa", dummy_candidates, top_k=2)
     for r in results:
         print(f"[{r['score']:.3f}] {r['content']}")
