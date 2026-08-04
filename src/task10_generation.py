@@ -37,20 +37,23 @@ TOP_P = 0.9
 # Chọn 0.3 vì: RAG cần factual, ít sáng tạo
 TEMPERATURE = 0.3
 
-# TODO: Chọn LLM model (OpenRouter model ID)
-LLM_MODEL = "openai/gpt-4o-mini"  # hoặc model ":free" nếu chưa có credit
+# Model ":free" — chỉ có OPENROUTER_API_KEY, chưa nạp credit trả phí.
+# Lấy từ https://openrouter.ai/api/v1/models (danh sách :free đổi liên tục, đừng hardcode
+# theo trí nhớ — luôn tra API thật trước khi chọn).
+LLM_MODEL = "openai/gpt-oss-20b:free"
 
 
 # =============================================================================
 # SYSTEM PROMPT
 # =============================================================================
 
-SYSTEM_PROMPT = """Bạn là trợ lý trả lời câu hỏi về chính sách thương mại điện tử và hỗ trợ
-khách hàng (thanh toán, đổi trả, giao hàng, quyền riêng tư, quy định người bán).
+SYSTEM_PROMPT = """Bạn là trợ lý pháp lý trả lời câu hỏi về Luật Lao Động Việt Nam cho người
+trẻ (thử việc, làm thêm giờ, nghỉ phép, hợp đồng lao động, sa thải, trợ cấp thôi việc, lương
+tối thiểu vùng).
 
 Quy tắc bắt buộc:
 1. Chỉ sử dụng thông tin từ context được cung cấp — KHÔNG bịa đặt
-2. Mỗi khẳng định phải có trích dẫn ngay sau, ví dụ: [Returns Policy, 2026]
+2. Mỗi khẳng định phải có trích dẫn ngay sau, ví dụ: [Bộ luật Lao động 2019, Điều 25]
 3. Nếu context không đủ thông tin → trả lời: "Tôi không thể xác minh thông tin này từ nguồn hiện có"
 4. Trả lời bằng tiếng Việt, có cấu trúc rõ ràng theo đoạn văn
 5. Không suy luận hay mở rộng ngoài những gì được nêu trong context"""
@@ -77,15 +80,12 @@ def reorder_for_llm(chunks: list[dict]) -> list[dict]:
     Returns:
         List reordered để maximize LLM attention.
     """
-    # TODO: Implement reordering
-    #
-    # if len(chunks) <= 2:
-    #     return chunks
-    #
-    # front = chunks[::2]   # index 0, 2, 4 -> đặt ở đầu
-    # back = chunks[1::2]   # index 1, 3    -> đặt ở cuối (reversed)
-    # return front + back[::-1]
-    raise NotImplementedError("Implement reorder_for_llm")
+    if len(chunks) <= 2:
+        return chunks
+
+    front = chunks[::2]   # index 0, 2, 4 -> đặt ở đầu
+    back = chunks[1::2]   # index 1, 3    -> đặt ở cuối (reversed)
+    return front + back[::-1]
 
 
 # =============================================================================
@@ -103,18 +103,15 @@ def format_context(chunks: list[dict]) -> str:
     Returns:
         Formatted context string.
     """
-    # TODO: Implement context formatting
-    #
-    # context_parts = []
-    # for i, chunk in enumerate(chunks, 1):
-    #     source = chunk.get("metadata", {}).get("source", f"Source {i}")
-    #     doc_type = chunk.get("metadata", {}).get("type", "unknown")
-    #     context_parts.append(
-    #         f"[Document {i} | Source: {source} | Type: {doc_type}]\n"
-    #         f"{chunk['content']}\n"
-    #     )
-    # return "\n---\n".join(context_parts)
-    raise NotImplementedError("Implement format_context")
+    context_parts = []
+    for i, chunk in enumerate(chunks, 1):
+        source = chunk.get("metadata", {}).get("source", f"Source {i}")
+        doc_type = chunk.get("metadata", {}).get("type", "unknown")
+        context_parts.append(
+            f"[Document {i} | Source: {source} | Type: {doc_type}]\n"
+            f"{chunk['content']}\n"
+        )
+    return "\n---\n".join(context_parts)
 
 
 # =============================================================================
@@ -143,51 +140,49 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
             'retrieval_source': str  # 'hybrid' hoặc 'pageindex'
         }
     """
-    # TODO: Implement generation pipeline
-    #
-    # # Step 1: Retrieve
-    # chunks = retrieve(query, top_k=top_k)
-    #
-    # # Step 2: Reorder
-    # reordered = reorder_for_llm(chunks)
-    #
-    # # Step 3: Format context
-    # context = format_context(reordered)
-    #
-    # # Step 4: Build prompt
-    # user_message = f"""Context:\n{context}\n\n---\n\nQuestion: {query}"""
-    #
-    # # Step 5: Call LLM (OpenRouter — OpenAI-compatible API)
-    # from openai import OpenAI
-    # api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
-    # client = OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1")
-    #
-    # response = client.chat.completions.create(
-    #     model=LLM_MODEL,
-    #     messages=[
-    #         {"role": "system", "content": SYSTEM_PROMPT},
-    #         {"role": "user", "content": user_message}
-    #     ],
-    #     temperature=TEMPERATURE,
-    #     top_p=TOP_P,
-    # )
-    #
-    # answer = response.choices[0].message.content
-    #
-    # # Step 6: Return
-    # return {
-    #     "answer": answer,
-    #     "sources": chunks,
-    #     "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none"
-    # }
-    raise NotImplementedError("Implement generate_with_citation")
+    # Step 1: Retrieve
+    chunks = retrieve(query, top_k=top_k)
+
+    # Step 2: Reorder
+    reordered = reorder_for_llm(chunks)
+
+    # Step 3: Format context
+    context = format_context(reordered)
+
+    # Step 4: Build prompt
+    user_message = f"""Context:\n{context}\n\n---\n\nQuestion: {query}"""
+
+    # Step 5: Call LLM (OpenRouter — OpenAI-compatible API)
+    from openai import OpenAI
+
+    api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
+    client = OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1")
+
+    response = client.chat.completions.create(
+        model=LLM_MODEL,
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_message},
+        ],
+        temperature=TEMPERATURE,
+        top_p=TOP_P,
+    )
+
+    answer = response.choices[0].message.content
+
+    # Step 6: Return
+    return {
+        "answer": answer,
+        "sources": chunks,
+        "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none",
+    }
 
 
 if __name__ == "__main__":
     test_queries = [
-        "Shopee hỗ trợ những phương thức thanh toán nào?",
-        "Làm sao để yêu cầu đổi trả hay hoàn tiền?",
-        "Cần chuẩn bị bằng chứng gì khi yêu cầu hoàn tiền?",
+        "Thời gian thử việc tối đa là bao lâu?",
+        "Lương làm thêm giờ tính như thế nào?",
+        "Trợ cấp thôi việc khi nghỉ việc được tính ra sao?",
     ]
 
     for q in test_queries:

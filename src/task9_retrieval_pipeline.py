@@ -35,10 +35,11 @@ from .task8_pageindex_vectorless import pageindex_search
 # CONFIGURATION
 # =============================================================================
 
-# TODO: Calibrate threshold này bằng cách tự đo điểm cosine của semantic_search
-# cho câu hỏi liên quan vs câu hỏi lạc đề (xem ghi chú ở trên) — ĐỪNG copy nguyên
-# giá trị mẫu, mỗi corpus/embedding model sẽ cho khoảng điểm khác nhau.
-SCORE_THRESHOLD = 0.3   # Nếu best score (cosine gốc) < threshold → fallback PageIndex
+# Calibrate bằng đo thật trên corpus Luật Lao Động + BAAI/bge-m3:
+#   Câu hỏi liên quan (thử việc, OT, lương tối thiểu, trợ cấp thôi việc): cosine 0.66-0.76
+#   Câu hỏi lạc đề (nấu ăn, cây cảnh, bóng đá, chuỗi vô nghĩa):          cosine 0.35-0.43
+# → 0.5 nằm giữa 2 nhóm, có margin an toàn cả 2 phía.
+SCORE_THRESHOLD = 0.5   # Nếu best score (cosine gốc) < threshold → fallback PageIndex
 DEFAULT_TOP_K = 5
 RERANK_METHOD = "rrf"  # "cross_encoder" | "mmr" | "rrf"
 
@@ -77,40 +78,45 @@ def retrieve(
             'source': str  # 'hybrid' hoặc 'pageindex'
         }
     """
-    # TODO: Implement full retrieval pipeline
-    #
     # Step 1: Song song chạy semantic + lexical
-    # dense_results = semantic_search(query, top_k=top_k * 2)
-    # sparse_results = lexical_search(query, top_k=top_k * 2)
-    #
+    dense_results = semantic_search(query, top_k=top_k * 2)
+    sparse_results = lexical_search(query, top_k=top_k * 2)
+
     # Step 2: Merge bằng RRF
-    # merged = rerank_rrf([dense_results, sparse_results], top_k=top_k * 2)
-    # for item in merged:
-    #     item["source"] = "hybrid"
-    #
+    merged = rerank_rrf([dense_results, sparse_results], top_k=top_k * 2)
+    for item in merged:
+        item["source"] = "hybrid"
+
     # Step 3: Rerank
-    # if use_reranking and merged:
-    #     final_results = rerank(query, merged, top_k=top_k, method=RERANK_METHOD)
-    # else:
-    #     final_results = merged[:top_k]
-    #
+    if use_reranking and merged:
+        final_results = rerank(query, merged, top_k=top_k, method=RERANK_METHOD)
+        for item in final_results:
+            item["source"] = "hybrid"
+    else:
+        final_results = merged[:top_k]
+
     # Step 4: Check threshold DÙNG ĐIỂM COSINE GỐC (dense_results), KHÔNG PHẢI RRF
-    # best_score = dense_results[0]["score"] if dense_results else 0.0
-    # if best_score < score_threshold:
-    #     print(f"  ⚠ Semantic best score ({best_score:.3f}) < threshold ({score_threshold})")
-    #     fallback = pageindex_search(query, top_k=top_k)
-    #     if fallback:
-    #         return fallback
-    #
-    # return final_results[:top_k]
-    raise NotImplementedError("Implement retrieve")
+    best_score = dense_results[0]["score"] if dense_results else 0.0
+    if best_score < score_threshold:
+        print(f"  ⚠ Semantic best score ({best_score:.3f}) < threshold ({score_threshold})")
+        try:
+            fallback = pageindex_search(query, top_k=top_k)
+        except Exception as e:
+            # PageIndex là dịch vụ ngoài (có thể hết credit/rate limit) — không để lỗi
+            # đó làm sập toàn bộ pipeline, cứ trả kết quả hybrid (dù yếu) thay vì crash.
+            print(f"  ✗ PageIndex fallback lỗi, giữ kết quả hybrid: {e}")
+            fallback = []
+        if fallback:
+            return fallback
+
+    return final_results[:top_k]
 
 
 if __name__ == "__main__":
     test_queries = [
-        "What payment methods does Shopee support?",
-        "How do I request a return or refund?",
-        "What evidence do I need for a refund request?",
+        "Thời gian thử việc tối đa là bao lâu?",
+        "Lương làm thêm giờ tính như thế nào?",
+        "Trợ cấp thôi việc khi nghỉ việc được tính ra sao?",
         "xyzabc123nonsense",  # Query không có kết quả → test fallback
     ]
 

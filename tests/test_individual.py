@@ -323,7 +323,7 @@ class TestTask6(unittest.TestCase):
         """Mỗi result có 'content', 'score'."""
         search = self._import_task6()
         try:
-            results = search("seller listing regulations", top_k=3)
+            results = search("quy định về thời gian thử việc", top_k=3)
             if not results:
                 self.skipTest("Không có kết quả")
             for r in results:
@@ -336,7 +336,7 @@ class TestTask6(unittest.TestCase):
         """Kết quả sorted theo BM25 score descending."""
         search = self._import_task6()
         try:
-            results = search("order tracking guide", top_k=5)
+            results = search("trợ cấp thôi việc khi nghỉ việc", top_k=5)
             if len(results) < 2:
                 self.skipTest("Không đủ kết quả")
             scores = [r["score"] for r in results]
@@ -348,7 +348,7 @@ class TestTask6(unittest.TestCase):
         """Query có keyword match phải có score > 0."""
         search = self._import_task6()
         try:
-            results = search("payment methods", top_k=3)
+            results = search("lương làm thêm giờ", top_k=3)
             if not results:
                 self.skipTest("Không có kết quả")
             # Ít nhất 1 result phải có score > 0
